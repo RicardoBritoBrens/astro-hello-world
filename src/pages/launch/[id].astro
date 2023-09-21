@@ -1,4 +1,5 @@
 ---
+import Layout from "../../layouts/Layout.astro";
 import { getLauchById } from "../../services/spacex"
 
 const { id } = Astro.params
@@ -9,11 +10,19 @@ if(id){
 }
 
 
+export function getStaticPaths(){
+    return [
+        {params: {id: '5eb87cd9ffd86e000604b32a'}},
+    ]
+}
+
 console.log(launch)
 
 console.log('loggin id page')
 ---
 
-<article>
-    {launch?.id}
-</article>
+<Layout title=`Lanzamiento ${id}`>
+    <article>
+        {launch?.id}
+    </article>
+</Layout>
