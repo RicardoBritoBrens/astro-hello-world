@@ -1,5 +1,9 @@
 # Astro Starter Kit: Basics
 
+
+ShowCase
+![Alt Text](https://github.com/RicardoBritoBrens/astro-hello-world/blob/master/SpaceX%20Launcher.gif)
+
 ```
 npm create astro@latest -- --template basics
 ```
