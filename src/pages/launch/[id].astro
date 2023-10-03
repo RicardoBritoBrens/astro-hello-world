@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getLauchById } from "../../services/spacex"
+import { getLatestLaunches, getLauchById } from "../../services/spacex"
 
 const { id } = Astro.params
 
@@ -10,10 +10,20 @@ if(id){
 }
 
 
-export function getStaticPaths(){
-    return [
-        {params: {id: '5eb87cd9ffd86e000604b32a'}},
-    ]
+export async function getStaticPaths(){
+
+    /* Here you are getting in dynamic way 
+    all the id's of the pages needed to generated
+    */
+    // const launches = await getLatestLaunches();
+    // return launches.map(launch => ({
+    //     params: {id: launch.id }
+    // }))
+
+    // Here you set manual id's
+    // return [
+    //     {params: {id: '5eb87cd9ffd86e000604b32a'}},
+    // ]
 }
 
 console.log(launch)
@@ -22,7 +32,10 @@ console.log('loggin id page')
 ---
 
 <Layout title=`Lanzamiento ${id}`>
-    <article>
-        {launch?.id}
+    <article class="flex gap-y-4 flex-col">
+        <img class="w-52 h-auto"
+        src={launch?.links?.patch.small} alt={launch?.name}>
+        <h2 class="text-4xl text-white font-bold">Launch #{launch?.flight_number}</h2>
+        <p>{launch?.details}</p>
     </article>
 </Layout>
